@@ -1,0 +1,173 @@
+{
+  "main": {
+    "id": "003f3283433a0270",
+    "type": "split",
+    "children": [
+      {
+        "id": "eca0e2b7252fb4d4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "11f838f4e37dd393",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Part 3.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "696c644704c2a157",
+    "type": "split",
+    "children": [
+      {
+        "id": "6c8b4d9c818d4197",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "30ef7984d9460ca5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "3f097ac7ea69175a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5afce08571a32888",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "68c13606bdf375dc",
+            "type": "leaf",
+            "state": {
+              "type": "mk-path-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5e1be80aeafeab24",
+    "type": "split",
+    "children": [
+      {
+        "id": "534f867c4cc67408",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ea84dbcbe501d161",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Part 3.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d790fd183f14d5cb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Part 3.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1d0a55d15758bac2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "26ba36c385245b61",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Part 3.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:퀵 스위처 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 데일리 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false
+    }
+  },
+  "active": "11f838f4e37dd393",
+  "lastOpenFiles": [
+    "Part 3.md",
+    "part2/part2-2/WarmUp/03/MyApp/MyApp~.swift",
+    "Tags",
+    "Welcome.md",
+    "part3",
+    "part2/part2-2/WarmUp/WarmUp.xcodeproj/xcuserdata/seojeong-won.xcuserdatad/xcschemes/xcschememanagement.plist",
+    "part2/part2-2/WarmUp/WarmUp.xcodeproj/project.xcworkspace/xcuserdata/seojeong-won.xcuserdatad/UserInterfaceState.xcuserstate",
+    "part2/part2-2/WarmUp/WarmUp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/configuration",
+    "part2/part2-2/WarmUp/WarmUp.xcodeproj/xcshareddata/xcschemes/WarmUp.xcscheme",
+    "part2/part2-2/WarmUp/WarmUp.xcodeproj/xcuserdata/seojeong-won.xcuserdatad/xcschemes",
+    "part2/part2-2/WarmUp/WarmUp.xcodeproj/project.xcworkspace/xcuserdata/seojeong-won.xcuserdatad",
+    "part2/part2-2/WarmUp/WarmUp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm"
+  ]
+}
