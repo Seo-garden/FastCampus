@@ -10,6 +10,7 @@
 		62494A4D2C4E94230067AF5E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62494A4C2C4E94230067AF5E /* HomeViewController.swift */; };
 		62494A572C4E95920067AF5E /* HomeVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62494A552C4E95920067AF5E /* HomeVideoCell.swift */; };
 		62494A582C4E95920067AF5E /* HomeVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62494A562C4E95920067AF5E /* HomeVideoCell.xib */; };
+		62DA1FFE2C4FB2D100A58052 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA1FFD2C4FB2D100A58052 /* HomeSection.swift */; };
 		62FC978A2C4E778A005D3A00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FC97892C4E778A005D3A00 /* AppDelegate.swift */; };
 		62FC978C2C4E778A005D3A00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FC978B2C4E778A005D3A00 /* SceneDelegate.swift */; };
 		62FC978E2C4E778A005D3A00 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FC978D2C4E778A005D3A00 /* LoginViewController.swift */; };
@@ -43,6 +44,7 @@
 		62494A4C2C4E94230067AF5E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		62494A552C4E95920067AF5E /* HomeVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoCell.swift; sourceTree = "<group>"; };
 		62494A562C4E95920067AF5E /* HomeVideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVideoCell.xib; sourceTree = "<group>"; };
+		62DA1FFD2C4FB2D100A58052 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
 		62FC97862C4E778A005D3A00 /* KTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62FC97892C4E778A005D3A00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62FC978B2C4E778A005D3A00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				62494A552C4E95920067AF5E /* HomeVideoCell.swift */,
 				62494A562C4E95920067AF5E /* HomeVideoCell.xib */,
+				62DA1FFD2C4FB2D100A58052 /* HomeSection.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				62FC978E2C4E778A005D3A00 /* LoginViewController.swift in Sources */,
 				62FC978A2C4E778A005D3A00 /* AppDelegate.swift in Sources */,
+				62DA1FFE2C4FB2D100A58052 /* HomeSection.swift in Sources */,
 				62FC978C2C4E778A005D3A00 /* SceneDelegate.swift in Sources */,
 				62494A572C4E95920067AF5E /* HomeVideoCell.swift in Sources */,
 				62494A4D2C4E94230067AF5E /* HomeViewController.swift in Sources */,
