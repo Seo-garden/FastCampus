@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "11f838f4e37dd393",
+            "id": "605331b3ed84cfde",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Part 3.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Part 3.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Part 3.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Part 3.md"
+                "file": "README.md"
               }
             }
           }
@@ -155,9 +155,10 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "11f838f4e37dd393",
+  "active": "605331b3ed84cfde",
   "lastOpenFiles": [
     "Part 3.md",
+    "README.md",
     "part2/part2-2/WarmUp/03/MyApp/MyApp~.swift",
     "Tags",
     "Welcome.md",

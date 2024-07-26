@@ -28,9 +28,11 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         bindingViewModel()
-        viewModel.loadData()
+        
         setDataSource()
         collectionView.collectionViewLayout = compositinalLayout
+        
+        viewModel.process(action: .loadData)
     }
     
     private static func setCompositinalLayout() -> UICollectionViewCompositionalLayout {        //static 으로 선언한 이유는 compositinalLayout 이 변수를 초기화할 때 내부메서드를 사용할 수 없는 상태인데, static 을 사용하게 될 경우 사용할 수 있다. 대신 safe 값을 사용할 수 있다.
@@ -48,15 +50,7 @@ class HomeViewController: UIViewController {
     }
     
     private func bindingViewModel() {
-        viewModel.$bannerViewModels.receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.applySnapshot()
-            }.store(in: &cancellables)
-        viewModel.$horizontalProductViewModels.receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.applySnapshot()
-            }.store(in: &cancellables)
-        viewModel.$verticalProductViewModels.receive(on: DispatchQueue.main)
+        viewModel.state.$collectionViewModels.receive(on: DispatchQueue.main)
             .sink { [weak self] _ in        //sink 에 경고를 띄우는 이유는 sink는 값을 관찰하기 때문에 수명을 정해줘야 한다.
                 self?.applySnapshot()
             }.store(in: &cancellables)
@@ -78,17 +72,17 @@ class HomeViewController: UIViewController {
     private func applySnapshot() {
         var snapshot: NSDiffableDataSourceSnapshot<Section, AnyHashable> = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
         
-        if let bannerViewModels = viewModel.bannerViewModels {      //해당값이 API에서 값이 전혀 없다면 배너 조차 만들지 않음
+        if let bannerViewModels = viewModel.state.collectionViewModels.bannerViewModels {      //해당값이 API에서 값이 전혀 없다면 배너 조차 만들지 않음
             snapshot.appendSections([.banner])
             snapshot.appendItems(bannerViewModels, toSection: .banner)
         }
         
-        if let horizontalProductViewModels = viewModel.horizontalProductViewModels {
+        if let horizontalProductViewModels = viewModel.state.collectionViewModels.horizontalProductViewModels {
             snapshot.appendSections([.horizontalProductItem])
             snapshot.appendItems(horizontalProductViewModels, toSection: .horizontalProductItem)
         }
         
-        if let verticalProductViewModels = viewModel.verticalProductViewModels {
+        if let verticalProductViewModels = viewModel.state.collectionViewModels.verticalProductViewModels {
             snapshot.appendSections([.verticalProductItem])
             snapshot.appendItems(verticalProductViewModels, toSection: .verticalProductItem)
         }
