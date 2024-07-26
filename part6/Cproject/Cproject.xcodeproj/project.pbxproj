@@ -17,13 +17,16 @@
 		62226AA12C4FC44600ACB53D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 62226AA02C4FC44600ACB53D /* Base */; };
 		62226AA92C4FCAAD00ACB53D /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62226AA82C4FCAAD00ACB53D /* Splash.storyboard */; };
 		62226AAB2C4FCAE000ACB53D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62226AAA2C4FCAE000ACB53D /* SplashViewController.swift */; };
-		62226AAE2C4FD3F600ACB53D /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = 62226AAD2C4FD3F600ACB53D /* DotLottie */; };
 		62226AB12C4FDC5900ACB53D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 62226AB02C4FDC5900ACB53D /* Lottie */; };
 		62226AB42C4FDEA800ACB53D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62226AB32C4FDEA800ACB53D /* Images.xcassets */; };
 		62226AB62C4FE06200ACB53D /* CPImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62226AB52C4FE06200ACB53D /* CPImages.swift */; };
 		62226AB82C4FE38800ACB53D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62226AB72C4FE38800ACB53D /* Colors.xcassets */; };
 		62226ABB2C4FE65B00ACB53D /* CPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62226ABA2C4FE65B00ACB53D /* CPColor.swift */; };
 		62226ABD2C4FE83900ACB53D /* CPFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62226ABC2C4FE83900ACB53D /* CPFont.swift */; };
+		624CA68A2C525185000634E0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624CA6892C525185000634E0 /* NetworkService.swift */; };
+		624CA68D2C5252C5000634E0 /* HomeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624CA68C2C5252C5000634E0 /* HomeResponse.swift */; };
+		62E5DE502C53A63F007E7307 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 62E5DE4F2C53A63F007E7307 /* Kingfisher */; };
+		62E5DE522C53A8A8007E7307 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E5DE512C53A8A8007E7307 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		62226AB72C4FE38800ACB53D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		62226ABA2C4FE65B00ACB53D /* CPColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPColor.swift; sourceTree = "<group>"; };
 		62226ABC2C4FE83900ACB53D /* CPFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFont.swift; sourceTree = "<group>"; };
+		624CA6892C525185000634E0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		624CA68C2C5252C5000634E0 /* HomeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponse.swift; sourceTree = "<group>"; };
+		62E5DE512C53A8A8007E7307 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62226AAE2C4FD3F600ACB53D /* DotLottie in Frameworks */,
+				62E5DE502C53A63F007E7307 /* Kingfisher in Frameworks */,
 				62226AB12C4FDC5900ACB53D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,8 +68,10 @@
 		620240DC2C511F1A0060AA8D /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				62226AB22C4FDE6D00ACB53D /* DesignSource */,
+				624CA68B2C5252A1000634E0 /* Model */,
 				620240DF2C511F520060AA8D /* Delegates */,
+				62226AB22C4FDE6D00ACB53D /* DesignSource */,
+				624CA6882C525176000634E0 /* Network */,
 				620240DE2C511F2E0060AA8D /* Home */,
 				620240DD2C511F220060AA8D /* Splash */,
 			);
@@ -83,10 +91,10 @@
 		620240DE2C511F2E0060AA8D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				624CA6872C524B29000634E0 /* View */,
 				620240DA2C511B470060AA8D /* HomeViewController.swift */,
 				620240D82C511B390060AA8D /* Home.storyboard */,
-				620240E02C5126430060AA8D /* HomeBannerCollectionViewCell.swift */,
-				620240E22C5130B00060AA8D /* HomeProductCollectionViewCell.swift */,
+				62E5DE512C53A8A8007E7307 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -138,6 +146,31 @@
 			path = DesignSource;
 			sourceTree = "<group>";
 		};
+		624CA6872C524B29000634E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				620240E02C5126430060AA8D /* HomeBannerCollectionViewCell.swift */,
+				620240E22C5130B00060AA8D /* HomeProductCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		624CA6882C525176000634E0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				624CA6892C525185000634E0 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		624CA68B2C5252A1000634E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				624CA68C2C5252C5000634E0 /* HomeResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,8 +188,8 @@
 			);
 			name = Cproject;
 			packageProductDependencies = (
-				62226AAD2C4FD3F600ACB53D /* DotLottie */,
 				62226AB02C4FDC5900ACB53D /* Lottie */,
+				62E5DE4F2C53A63F007E7307 /* Kingfisher */,
 			);
 			productName = Cproject;
 			productReference = 62226A912C4FC44500ACB53D /* Cproject.app */;
@@ -187,8 +220,8 @@
 			);
 			mainGroup = 62226A882C4FC44500ACB53D;
 			packageReferences = (
-				62226AAC2C4FD3F600ACB53D /* XCRemoteSwiftPackageReference "dotlottie-ios" */,
 				62226AAF2C4FDC5900ACB53D /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				62E5DE4E2C53A63F007E7307 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 62226A922C4FC44500ACB53D /* Products */;
 			projectDirPath = "";
@@ -220,15 +253,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				624CA68A2C525185000634E0 /* NetworkService.swift in Sources */,
 				62226A952C4FC44500ACB53D /* AppDelegate.swift in Sources */,
 				620240E32C5130B00060AA8D /* HomeProductCollectionViewCell.swift in Sources */,
 				62226ABB2C4FE65B00ACB53D /* CPColor.swift in Sources */,
 				620240DB2C511B470060AA8D /* HomeViewController.swift in Sources */,
 				62226ABD2C4FE83900ACB53D /* CPFont.swift in Sources */,
 				62226A972C4FC44500ACB53D /* SceneDelegate.swift in Sources */,
+				62E5DE522C53A8A8007E7307 /* HomeViewModel.swift in Sources */,
 				62226AAB2C4FCAE000ACB53D /* SplashViewController.swift in Sources */,
 				62226AB62C4FE06200ACB53D /* CPImages.swift in Sources */,
 				620240E12C5126430060AA8D /* HomeBannerCollectionViewCell.swift in Sources */,
+				624CA68D2C5252C5000634E0 /* HomeResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,14 +481,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		62226AAC2C4FD3F600ACB53D /* XCRemoteSwiftPackageReference "dotlottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LottieFiles/dotlottie-ios.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		62226AAF2C4FDC5900ACB53D /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -461,18 +489,26 @@
 				minimumVersion = 4.5.0;
 			};
 		};
+		62E5DE4E2C53A63F007E7307 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		62226AAD2C4FD3F600ACB53D /* DotLottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62226AAC2C4FD3F600ACB53D /* XCRemoteSwiftPackageReference "dotlottie-ios" */;
-			productName = DotLottie;
-		};
 		62226AB02C4FDC5900ACB53D /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 62226AAF2C4FDC5900ACB53D /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		62E5DE4F2C53A63F007E7307 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62E5DE4E2C53A63F007E7307 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
