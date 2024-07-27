@@ -21,7 +21,7 @@ final class HomeViewController: UIViewController {
         case couponButton
         case verticalProductItem
         case separateLine2
-        //        case theme
+        case theme
     }
     
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -60,7 +60,8 @@ final class HomeViewController: UIViewController {
                 return HomeProductCollectionViewCell.verticalProductItemLayout()
             case .separateLine1, .separateLine2:
                 return HomeSpearateLineCollectionViewCell.separateLineLayout()
-            
+            case .theme:
+                return HomeThemeCollectionViewCell.themeLayout()
             case.none:
                 return nil
             }}
@@ -78,7 +79,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func setDataSource() -> DataSource {
-        return UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, viewModel in
+        let dataSource: DataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, viewModel in
             switch self?.currentSection[indexPath.section] {
             case .banner:
                 return self?.bannerCell(collectionView, indexPath, viewModel)
@@ -88,10 +89,22 @@ final class HomeViewController: UIViewController {
                 return self?.couponButtonCell(collectionView, indexPath, viewModel)
             case .separateLine1, .separateLine2:
                 return self?.separateLineCell(collectionView, indexPath, viewModel)
+            case .theme:
+                return self?.themeCell(collectionView, indexPath, viewModel)
             case .none:
                 return .init()
             }
         })
+        dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader,
+                  let viewModel = self?.viewModel.state.collectionViewModels.themeViewModels?.headerViewModel else { return nil }
+            
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeThemeHeaderCollectionReusableView.reusableId, for: indexPath) as? HomeThemeHeaderCollectionReusableView
+            headerView?.setViewModel(viewModel)
+            
+            return headerView
+        }
+        return dataSource
     }
     
     private func applySnapshot() {
@@ -120,6 +133,14 @@ final class HomeViewController: UIViewController {
         if let verticalProductViewModels = viewModel.state.collectionViewModels.verticalProductViewModels {
             snapshot.appendSections([.verticalProductItem])
             snapshot.appendItems(verticalProductViewModels, toSection: .verticalProductItem)
+        }
+        
+        if let themeViewModels = viewModel.state.collectionViewModels.themeViewModels?.items{
+            snapshot.appendSections([.separateLine2])
+            snapshot.appendItems(viewModel.state.collectionViewModels.separateLine2ViewModels, toSection: .separateLine2)
+            
+            snapshot.appendSections([.theme])
+            snapshot.appendItems(themeViewModels, toSection: .theme)
         }
         
         dataSource.apply(snapshot)
@@ -154,6 +175,14 @@ final class HomeViewController: UIViewController {
         guard let viewModel = viewModel as? HomeSpearateLineCollectionViewCellViewModel,
               let cell: HomeSpearateLineCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeSpearateLineCollectionViewCell.reusableId, for: indexPath) as? HomeSpearateLineCollectionViewCell else { return .init() }
         cell.setViewModel(viewModel)
+        return cell
+    }
+    
+    private func themeCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: AnyHashable) -> UICollectionViewCell {
+        guard let viewModel = viewModel as? HomeThemeCollectionViewCellViewModel,
+              let cell: HomeThemeCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeThemeCollectionViewCell.reusableId, for: indexPath) as? HomeThemeCollectionViewCell else { return .init() }
+        cell.setViewModel(viewModel)
+        
         return cell
     }
 }

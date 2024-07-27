@@ -12,7 +12,7 @@ struct HomeResponse: Decodable {
     let banners: [Banner]
     let horizontalProducts: [Product]
     let verticalProducts: [Product]
-//    let thems: [Banner]
+    let themes: [Banner]
 }
 
 struct Banner: Decodable {

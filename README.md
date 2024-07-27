@@ -17,3 +17,7 @@ snapshot: NSDiffableDataSourceSnapshot<Section, AnyHashable> = NSDiffableDataSou
 
         }
 ```
+
+> [!NOTE] UIKit 기반 프로젝트를 #Preview 에서 Crashed 가 발생할 때
+> 시뮬레이터는 이상이 없었는데, 크래쉬가 발생하면서 프리뷰가 안될 때, 클린 빌드를 해본다!
+

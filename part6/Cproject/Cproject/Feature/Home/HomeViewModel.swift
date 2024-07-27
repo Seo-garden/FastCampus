@@ -27,8 +27,11 @@ final class HomeViewModel {
             var couponState: [HomeCouponButtonCollectionViewCellViewModel]?
             var separateLine1ViewModels: [HomeSpearateLineCollectionViewCellViewModel] = [HomeSpearateLineCollectionViewCellViewModel()]
             var separateLine2ViewModels: [HomeSpearateLineCollectionViewCellViewModel] = [HomeSpearateLineCollectionViewCellViewModel()]
+            var themeViewModels: 
+            (headerViewModel: HomeThemeHeaderCollectionReusableViewModel, items: [HomeThemeCollectionViewCellViewModel])?
+            
         }
-        @Published var collectionViewModels: CollectionViewModels = CollectionViewModels()      //값이 변경되면 알림이 되는 @Published
+        @Published var collectionViewModels: CollectionViewModels = CollectionViewModels()      //값이 변경되면 알림이 되는
     }
     
     private(set) var state: State = State()
@@ -59,6 +62,7 @@ final class HomeViewModel {
         Task { await transformBanner(response) }  //각각 따로 동작해야 하기 때문에, Task 로 묶어준다.
         Task { await transforVerticalProduct(response) }
         Task { await transforHorizontalProduct(response) }
+        Task { await transforTheme(response) }
     }
 }
 
@@ -79,7 +83,6 @@ extension HomeViewModel {
     private func loadCoupon() {
         let couponState: Bool = UserDefaults.standard.bool(forKey: couponDownloadedKey)      //UserDefaults 의 경우 실패할 경우가 없다.
         process(action: .getCouponSuccess(couponState))
-        
     }
     
     @MainActor      //메인에서 동작하게 만드는 어노테이션
@@ -89,7 +92,6 @@ extension HomeViewModel {
         }
     }
     
-    
     @MainActor
     private func transforHorizontalProduct(_ response: HomeResponse) async {
         state.collectionViewModels.horizontalProductViewModels = productToHomeProductCollectionViewCellViewModel(response.horizontalProducts)
@@ -98,6 +100,14 @@ extension HomeViewModel {
     @MainActor
     private func transforVerticalProduct(_ response: HomeResponse) async {
         state.collectionViewModels.verticalProductViewModels = productToHomeProductCollectionViewCellViewModel(response.verticalProducts)
+    }
+    
+    @MainActor
+    private func transforTheme(_ response: HomeResponse) async {
+        let items = response.themes.map {
+            HomeThemeCollectionViewCellViewModel(themeImageUrl: $0.imageUrl)
+        }
+        state.collectionViewModels.themeViewModels = (HomeThemeHeaderCollectionReusableViewModel(headerText: "테마관"), items)
     }
     
     private func productToHomeProductCollectionViewCellViewModel(_ product: [Product]) -> [HomeProductCollectionViewCellViewModel] {
@@ -111,8 +121,12 @@ extension HomeViewModel {
         state.collectionViewModels.couponState = [.init(state: isDownloded ? .disable : .enable)]
     }
     
+    
+    
     private func downloadCoupon() {
         UserDefaults.standard.setValue(true, forKey: couponDownloadedKey)
         process(action: .loadCoupon)
     }
+    
+    
 }

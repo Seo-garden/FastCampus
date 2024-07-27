@@ -73,8 +73,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -157,6 +156,7 @@
   },
   "active": "605331b3ed84cfde",
   "lastOpenFiles": [
+    "part6/Cproject/Cproject/Feature/Home/View/HomeThemeCollectionViewCell~.swift",
     "Part 3.md",
     "README.md",
     "part2/part2-2/WarmUp/03/MyApp/MyApp~.swift",
