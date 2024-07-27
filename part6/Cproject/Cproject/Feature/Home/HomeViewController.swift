@@ -10,40 +10,57 @@ import SwiftUI
 import Combine
 
 
-class HomeViewController: UIViewController {
-    enum Section: Int {
+final class HomeViewController: UIViewController {
+    private typealias DataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>
+    private typealias SnapShot = NSDiffableDataSourceSnapshot<Section, AnyHashable>
+    
+    private enum Section: Int {
         case banner
         case horizontalProductItem
+        case separateLine1
+        case couponButton
         case verticalProductItem
+        case separateLine2
         //        case theme
     }
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?  //dataSource 값을 만들때는 컬렉션뷰가 필요한데, collectionView 가 생성된 후에 사용할 수 있어서 viewDidLoad() 이후에 값을 할당한다.
-    private var compositinalLayout: UICollectionViewCompositionalLayout = setCompositinalLayout()
+    @IBOutlet private weak var collectionView: UICollectionView!
+    private lazy var dataSource: DataSource = setDataSource()  //dataSource 값을 만들때는 컬렉션뷰가 필요한데, collectionView 가 생성된 후에 사용할 수 있어서 viewDidLoad() 이후에 값을 할당한다.
+    private lazy var compositinalLayout: UICollectionViewCompositionalLayout = setCompositinalLayout()
     private var viewModel: HomeViewModel = HomeViewModel()
     private var cancellables : Set<AnyCancellable> = []        //뷰컨트롤러가 사라질 때 사라진다.
+    
+    private var currentSection: [Section]  {
+        dataSource.snapshot().sectionIdentifiers as [Section]
+    }
+    
+    private var didTapCouponDownload: PassthroughSubject<Void, Never> = PassthroughSubject<Void, Never>()       //쿠폰 다운로드 버튼을 누르면 send 값이 넘어와서 관찰
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         bindingViewModel()
-        
-        setDataSource()
+//        setDataSource()
         collectionView.collectionViewLayout = compositinalLayout
         
         viewModel.process(action: .loadData)
+        viewModel.process(action: .loadCoupon)
     }
     
-    private static func setCompositinalLayout() -> UICollectionViewCompositionalLayout {        //static 으로 선언한 이유는 compositinalLayout 이 변수를 초기화할 때 내부메서드를 사용할 수 없는 상태인데, static 을 사용하게 될 경우 사용할 수 있다. 대신 safe 값을 사용할 수 있다.
-        UICollectionViewCompositionalLayout { section, _ in
-            switch Section(rawValue: section) {
+    private func setCompositinalLayout() -> UICollectionViewCompositionalLayout {        //static 으로 선언한 이유는 compositinalLayout 이 변수를 초기화할 때 내부메서드를 사용할 수 없는 상태인데, static 을 사용하게 될 경우 사용할 수 있다. 대신 safe 값을 사용할 수 있다.
+        UICollectionViewCompositionalLayout { [weak self] section, _ in
+            switch self?.currentSection[section] {
             case .banner:
                 return HomeBannerCollectionViewCell.bannerLayout()
             case .horizontalProductItem:
                 return HomeProductCollectionViewCell.horizontalProductItemLayout()
+            case .couponButton:
+                return HomeCouponButtonCollectionViewCell.couponButtonItemLayout()
             case .verticalProductItem:
                 return HomeProductCollectionViewCell.verticalProductItemLayout()
+            case .separateLine1, .separateLine2:
+                return HomeSpearateLineCollectionViewCell.separateLineLayout()
+            
             case.none:
                 return nil
             }}
@@ -54,15 +71,23 @@ class HomeViewController: UIViewController {
             .sink { [weak self] _ in        //sink 에 경고를 띄우는 이유는 sink는 값을 관찰하기 때문에 수명을 정해줘야 한다.
                 self?.applySnapshot()
             }.store(in: &cancellables)
+        didTapCouponDownload.receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.viewModel.process(action: .didTapCouponButton)
+            }.store(in: &cancellables)
     }
     
-    private func setDataSource() {
-        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, viewModel in
-            switch Section(rawValue: indexPath.section) {
+    private func setDataSource() -> DataSource {
+        return UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, viewModel in
+            switch self?.currentSection[indexPath.section] {
             case .banner:
                 return self?.bannerCell(collectionView, indexPath, viewModel)
             case .horizontalProductItem, .verticalProductItem:
                 return self?.ProductItemCell(collectionView, indexPath, viewModel)
+            case .couponButton:
+                return self?.couponButtonCell(collectionView, indexPath, viewModel)
+            case .separateLine1, .separateLine2:
+                return self?.separateLineCell(collectionView, indexPath, viewModel)
             case .none:
                 return .init()
             }
@@ -70,7 +95,7 @@ class HomeViewController: UIViewController {
     }
     
     private func applySnapshot() {
-        var snapshot: NSDiffableDataSourceSnapshot<Section, AnyHashable> = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
+        var snapshot: SnapShot = SnapShot()
         
         if let bannerViewModels = viewModel.state.collectionViewModels.bannerViewModels {      //해당값이 API에서 값이 전혀 없다면 배너 조차 만들지 않음
             snapshot.appendSections([.banner])
@@ -80,6 +105,16 @@ class HomeViewController: UIViewController {
         if let horizontalProductViewModels = viewModel.state.collectionViewModels.horizontalProductViewModels {
             snapshot.appendSections([.horizontalProductItem])
             snapshot.appendItems(horizontalProductViewModels, toSection: .horizontalProductItem)
+            
+            snapshot.appendSections([.separateLine1])
+            snapshot.appendItems(viewModel.state.collectionViewModels.separateLine1ViewModels, toSection: .separateLine1)
+        }
+        
+        
+        if let couponViewModels = viewModel.state.collectionViewModels.couponState {
+            
+            snapshot.appendSections([.couponButton])
+            snapshot.appendItems(couponViewModels, toSection: .couponButton)
         }
         
         if let verticalProductViewModels = viewModel.state.collectionViewModels.verticalProductViewModels {
@@ -87,10 +122,11 @@ class HomeViewController: UIViewController {
             snapshot.appendItems(verticalProductViewModels, toSection: .verticalProductItem)
         }
         
-        dataSource?.apply(snapshot)
+        dataSource.apply(snapshot)
     }
     private func bannerCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: AnyHashable) -> UICollectionViewCell {
-        guard let viewModel = viewModel as? HomeBannerCollectionViewCellViewModel, let cell: HomeBannerCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeBannerCollectionViewCell", for: indexPath) as? HomeBannerCollectionViewCell else { return .init()}
+        guard let viewModel = viewModel as? HomeBannerCollectionViewCellViewModel, 
+                let cell: HomeBannerCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeBannerCollectionViewCell.reusableId, for: indexPath) as? HomeBannerCollectionViewCell else { return .init()}
         
         cell.setViewModel(viewModel)
         
@@ -98,10 +134,26 @@ class HomeViewController: UIViewController {
     }
     
     private func ProductItemCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: AnyHashable) -> UICollectionViewCell {
-        guard let viewModel = viewModel as? HomeProductCollectionViewCellViewModel, let cell: HomeProductCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeProductCollectionViewCell", for: indexPath) as? HomeProductCollectionViewCell else { return .init() }
+        guard let viewModel = viewModel as? HomeProductCollectionViewCellViewModel, 
+                let cell: HomeProductCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeProductCollectionViewCell.reusableId, for: indexPath) as? HomeProductCollectionViewCell else { return .init() }
         
         cell.setViewModel(viewModel)
         
+        return cell
+    }
+    
+    private func couponButtonCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: AnyHashable) -> UICollectionViewCell {
+        guard let viewModel = viewModel as? HomeCouponButtonCollectionViewCellViewModel, 
+                let cell: HomeCouponButtonCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCouponButtonCollectionViewCell.reusableId, for: indexPath) as? HomeCouponButtonCollectionViewCell else { return .init() }
+        
+        cell.setViewModel(viewModel, didTapCouponDownload)
+        return cell
+    }
+    
+    private func separateLineCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: AnyHashable) -> UICollectionViewCell {
+        guard let viewModel = viewModel as? HomeSpearateLineCollectionViewCellViewModel,
+              let cell: HomeSpearateLineCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeSpearateLineCollectionViewCell.reusableId, for: indexPath) as? HomeSpearateLineCollectionViewCell else { return .init() }
+        cell.setViewModel(viewModel)
         return cell
     }
 }

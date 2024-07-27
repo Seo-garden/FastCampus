@@ -53,7 +53,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeProductCollectionViewCell" id="vOk-J5-3mq" customClass="HomeProductCollectionViewCell" customModule="Cproject" customModuleProvider="target">
-                                        <rect key="frame" x="76.666666666666671" y="220" width="240" height="338.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="220" width="240" height="338.33333333333326"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RXr-ah-wjv">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="338.33333333333326"/>
@@ -124,6 +124,41 @@
                                             <outlet property="productTitleLabel" destination="9d7-0o-XCR" id="kpm-uj-eWm"/>
                                             <outlet property="productreasonDiscountLabel" destination="Mlc-B1-9Ut" id="lHt-HF-YRs"/>
                                         </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCouponButtonCollectionViewCell" id="7Nz-sV-ZuR" customClass="HomeCouponButtonCollectionViewCell" customModule="Cproject" customModuleProvider="target">
+                                        <rect key="frame" x="369" y="382.33333333333331" width="24" height="14"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WfL-ER-NZe">
+                                            <rect key="frame" x="0.0" y="0.0" width="24" height="14"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-dZ-Xea">
+                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="14"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain"/>
+                                                    <connections>
+                                                        <action selector="didTapCouponButton:" destination="7Nz-sV-ZuR" eventType="touchUpInside" id="3Wr-iM-jJf"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="0bj-dZ-Xea" secondAttribute="trailing" id="7Uq-lo-nYP"/>
+                                                <constraint firstItem="0bj-dZ-Xea" firstAttribute="leading" secondItem="WfL-ER-NZe" secondAttribute="leading" id="Ha4-Av-ngv"/>
+                                                <constraint firstItem="0bj-dZ-Xea" firstAttribute="top" secondItem="WfL-ER-NZe" secondAttribute="top" id="kVT-eB-vfl"/>
+                                                <constraint firstAttribute="bottom" secondItem="0bj-dZ-Xea" secondAttribute="bottom" id="vEo-rE-SgH"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="couponButton" destination="0bj-dZ-Xea" id="3mw-sQ-9fM"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeSpearateLineCollectionViewCell" id="4I8-qr-vIe" customClass="HomeSpearateLineCollectionViewCell" customModule="Cproject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="568.33333333333337" width="393" height="210"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NC9-U2-TrV">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="210"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
