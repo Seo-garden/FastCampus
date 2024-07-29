@@ -21,3 +21,9 @@ snapshot: NSDiffableDataSourceSnapshot<Section, AnyHashable> = NSDiffableDataSou
 > [!NOTE] UIKit 기반 프로젝트를 #Preview 에서 Crashed 가 발생할 때
 > 시뮬레이터는 이상이 없었는데, 크래쉬가 발생하면서 프리뷰가 안될 때, 클린 빌드를 해본다!
 
+> [!NOTE] Swift Combine 에 대해 파헤치다가
+> https://green1229.tistory.com/332
+
+> [!NOTE] @MainActor
+> MainActor 는 자동으로 UI관련 API 가 메인스레드에서 적절하게 디스패치 되도록 제공하는 속성이다. 즉, Swift Concurrency를 사용하고 MainActor가 표시된 컨텍스트 내에서 비동기 코드를 작성하면 실수로 백그라운드 큐에서 UI 업데이트를 해주는 오류에 대해 더 이상 걱정할 필요가 없다.
+

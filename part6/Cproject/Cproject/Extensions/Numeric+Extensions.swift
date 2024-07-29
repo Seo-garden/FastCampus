@@ -16,5 +16,4 @@ extension Numeric {     //기존에 extension 은, 클래스의 상속 혹은 �
         
         return (formatter.string(for: self) ?? "") + "원"
     }
-    
 }

@@ -26,7 +26,7 @@ extension HomeBannerCollectionViewCell {
         let itemSize: NSCollectionLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))       //그룹의 사이즈를 그대로 가져감
         let item: NSCollectionLayoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize: NSCollectionLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(165 / 393))
+        let groupSize: NSCollectionLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(165 / 393))     //전체 높이의 약 42%
         let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section: NSCollectionLayoutSection = NSCollectionLayoutSection(group: group)

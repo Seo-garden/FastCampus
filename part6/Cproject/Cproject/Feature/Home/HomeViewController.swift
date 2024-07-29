@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         bindingViewModel()
-//        setDataSource()
+        
         collectionView.collectionViewLayout = compositinalLayout
         
         viewModel.process(action: .loadData)
@@ -185,6 +185,13 @@ final class HomeViewController: UIViewController {
         
         return cell
     }
+    
+    @IBAction func favoriteButtonAction(_ sender: UIBarButtonItem) {
+        let favoriteStoryboard: UIStoryboard = UIStoryboard(name: "Favorite", bundle: nil)
+        if let favoriteViewController = favoriteStoryboard.instantiateInitialViewController() {
+            navigationController? .pushViewController(favoriteViewController, animated: true) }
+    }
+    
 }
 
 #Preview {
