@@ -42,7 +42,7 @@ final class HomeViewController: UIViewController {
         bindingViewModel()
         
         collectionView.collectionViewLayout = compositinalLayout
-        
+        collectionView.delegate = self
         viewModel.process(action: .loadData)
         viewModel.process(action: .loadCoupon)
     }
@@ -146,8 +146,8 @@ final class HomeViewController: UIViewController {
         dataSource.apply(snapshot)
     }
     private func bannerCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: AnyHashable) -> UICollectionViewCell {
-        guard let viewModel = viewModel as? HomeBannerCollectionViewCellViewModel, 
-                let cell: HomeBannerCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeBannerCollectionViewCell.reusableId, for: indexPath) as? HomeBannerCollectionViewCell else { return .init()}
+        guard let viewModel = viewModel as? HomeBannerCollectionViewCellViewModel,
+              let cell: HomeBannerCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeBannerCollectionViewCell.reusableId, for: indexPath) as? HomeBannerCollectionViewCell else { return .init()}
         
         cell.setViewModel(viewModel)
         
@@ -155,8 +155,8 @@ final class HomeViewController: UIViewController {
     }
     
     private func ProductItemCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: AnyHashable) -> UICollectionViewCell {
-        guard let viewModel = viewModel as? HomeProductCollectionViewCellViewModel, 
-                let cell: HomeProductCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeProductCollectionViewCell.reusableId, for: indexPath) as? HomeProductCollectionViewCell else { return .init() }
+        guard let viewModel = viewModel as? HomeProductCollectionViewCellViewModel,
+              let cell: HomeProductCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeProductCollectionViewCell.reusableId, for: indexPath) as? HomeProductCollectionViewCell else { return .init() }
         
         cell.setViewModel(viewModel)
         
@@ -164,8 +164,8 @@ final class HomeViewController: UIViewController {
     }
     
     private func couponButtonCell(_ collectionView: UICollectionView, _ indexPath: IndexPath, _ viewModel: AnyHashable) -> UICollectionViewCell {
-        guard let viewModel = viewModel as? HomeCouponButtonCollectionViewCellViewModel, 
-                let cell: HomeCouponButtonCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCouponButtonCollectionViewCell.reusableId, for: indexPath) as? HomeCouponButtonCollectionViewCell else { return .init() }
+        guard let viewModel = viewModel as? HomeCouponButtonCollectionViewCellViewModel,
+              let cell: HomeCouponButtonCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCouponButtonCollectionViewCell.reusableId, for: indexPath) as? HomeCouponButtonCollectionViewCell else { return .init() }
         
         cell.setViewModel(viewModel, didTapCouponDownload)
         return cell
@@ -189,9 +189,28 @@ final class HomeViewController: UIViewController {
     @IBAction func favoriteButtonAction(_ sender: UIBarButtonItem) {
         let favoriteStoryboard: UIStoryboard = UIStoryboard(name: "Favorite", bundle: nil)
         if let favoriteViewController = favoriteStoryboard.instantiateInitialViewController() {
-            navigationController? .pushViewController(favoriteViewController, animated: true) }
+            navigationController? .pushViewController(favoriteViewController, animated: true)
+        }
     }
-    
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch currentSection[indexPath.section] {
+        case .banner:
+            break
+        case .separateLine1, .separateLine2:
+            break
+        case .couponButton:
+            break
+        case .horizontalProductItem, .verticalProductItem:
+            let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+            guard let viewController: UIViewController = storyboard.instantiateInitialViewController() else { return }
+            navigationController?.pushViewController(viewController, animated: true)
+        case .theme:
+            break
+        }
+    }
 }
 
 #Preview {
