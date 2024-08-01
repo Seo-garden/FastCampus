@@ -38,6 +38,7 @@ final class DetailViewModel: ObservableObject {     //ObservableObject 뷰모델
     private var isFavorite: Bool = false
     private var needShowMore: Bool = true
     private(set) var showOptionViewController: PassthroughSubject<Void, Never> = PassthroughSubject<Void, Never>()
+    private(set) var showPurchaseViewController: PassthroughSubject<Void, Never> = PassthroughSubject<Void, Never>()
     
     func process(_ action: Action) {
         switch action {
@@ -57,7 +58,7 @@ final class DetailViewModel: ObservableObject {     //ObservableObject 뷰모델
         case .didTapFavorite:
             Task { await toggleFavorite() }
         case .didTapPurchase:
-            break
+            showPurchaseViewController.send()
         }
     }
     

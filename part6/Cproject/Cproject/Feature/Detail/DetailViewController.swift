@@ -38,7 +38,14 @@ class DetailViewController: UIViewController {
             .sink { [weak self] _ in
             let viewController = OptionViewController()
                 self?.navigationController?.pushViewController(viewController, animated: true)
-        }
+            }
+            .store(in: &cancellables)
+        
+        viewModel.showPurchaseViewController.receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+            let viewController = PurchaseViewController()
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }
             .store(in: &cancellables)
     }
 }
