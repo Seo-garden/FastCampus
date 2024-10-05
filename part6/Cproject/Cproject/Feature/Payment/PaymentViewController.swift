@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import SwiftUI
 
 final class PaymentViewController: UIViewController {
     private var webView: WKWebView?
@@ -58,7 +59,7 @@ final class PaymentViewController: UIViewController {
             .name: "myCookie",
             .value: "value",
             .secure: "FALSE",
-            .expires: NSDate(timeIntervalSinceNow: 3600)        //60분 뒤에 만료되는 쿠키
+            .expires: NSDate(timeIntervalSinceNow: 3600)        //60분 뒤에 만료되는 쿠키, 3600초 
         ]) else { return }
         webView?.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
     }

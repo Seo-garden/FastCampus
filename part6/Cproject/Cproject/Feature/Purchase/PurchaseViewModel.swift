@@ -26,6 +26,8 @@ final class PurchaseViewModel: ObservableObject {
             Task { await loadData() }
         case .didTapPurchaseButton:
             Task { await didTapPurchaseButton() }
+            showPaymentViewController.send()
+            print("debug: showPaymentViewController 버튼 감지")
         }
     }
 }
@@ -51,4 +53,5 @@ extension PurchaseViewModel {
     private func didTapPurchaseButton() async {
         showPaymentViewController.send()
     }
+    
 }

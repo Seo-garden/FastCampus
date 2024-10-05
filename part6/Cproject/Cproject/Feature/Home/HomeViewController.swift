@@ -95,6 +95,7 @@ final class HomeViewController: UIViewController {
                 return .init()
             }
         })
+        
         dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
             guard kind == UICollectionView.elementKindSectionHeader,
                   let viewModel = self?.viewModel.state.collectionViewModels.themeViewModels?.headerViewModel else { return nil }

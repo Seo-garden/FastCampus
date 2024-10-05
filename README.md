@@ -1,29 +1,28 @@
 # FastCampus
 
-> [!NOTE] Completion
-> Completion Handler 는 비동기 작업이 끝났을 때 호출되는 클로저로, 일반적으로 네트워크 요청이나 파일 I/O 와 같은 시간이 걸리는 작업에서 사용된다
+> [!NOTE] CI/CD
+> 지속적 통합 및 지속적 배포는 소프트웨어 개발 프로세스를 자동화하고 개선하기 위한 방법론
 
-> [!NOTE] snapshot
-> 스냅샷은 주로 UI 관련 작업에서 사용되는데, 특정 시점의 데이터 상태를 캡처하는데 사용됩니다. 예를 들어, UITableViewDiffableDataSource 는 테이블 뷰의 상태를 나타내기 위해 snapshot 을 사용하게 된다
+> [!NOTE] 지속적 통합(CI)
+> 개발자들이 코드 변경 사항을 주기적으로 공유 레포지토리에 통합(merge)하는 것을 말합니다. 이 과정에서 자동화된 빌드와 테스트가 수행되어 문제점을 초기에 발견하고 해결할 수 있다. 개발자가 깃허브에 푸시하면 Xcode Server 등의 CI 툴이 자동으로 앱을 빌드하고 단위 테스트를 실행한다. 
+> Xcode 가 캐싱이 잘 되어있기 때문에, 로컬에서 빌드할 땐 문제가 없이 빌드되어서 푸쉬를 했는데, 사실상 클린빌드를 했을 때 오류가 발생할 수 있다. 하지만 매번 클린빌드를 하는 것이 번거롭다.
 
-```
-snapshot: NSDiffableDataSourceSnapshot<Section, AnyHashable> = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
+> [!NOTE] 지속적 배포(CD)
+> 지속적 배포는 테스트를 통과한 코드는 자동으로 실제 사용 환경(프로덕션)에 배포된다. ex) 깃허브에서 코드를 푸시하면, 모든 테스트를 통과한 뒤 자동으로 앱 스토어에 배포된다.
 
-        if let bannerViewModels = viewModel.state.collectionViewModels.bannerViewModels {      //해당값이 API에서 값이 전혀 없다면 배너 조차 만들지 않음
+> [!TIP] iOS 개발에서의 CI/CD 중요성
+> - 효율성 향상 : 자동화된 프로세스를 통해 개발자는 더 자주, 더 신속하게 고품질의 애플리케이션을 출시할 수 있다.
+> - 버그 감소 : 지속적 통합을 통해 버그를 초기에 발견하고 수정할 수 있으며, 이는 애플리케이션의 전반적인 품질을 향상시킨다.
+> - 협업 강화 : 개발 팀 간의 협업이 강화되고, 코드 통합의 복잡성이 감소된다.
 
-            snapshot.appendSections([.banner])
+> [!NOTE] CI/CD 구현을 위한 iOS 개발 도구
+> - Xcode Server : 애플의 공식적인 CI 도구로, Xcode와 통합되어 있어 iOS 개발에 최적화됨.
+> - Github action : 소스 코드 관리 및 CI/CD가 하나의 플롯폼에 통합된 도구이다. iOS 프로젝트를 위한 자동화된 테스트 및 배포 파이프라인을 제공한다.
 
-            snapshot.appendItems(bannerViewModels, toSection: .banner)
-
-        }
-```
-
-> [!NOTE] UIKit 기반 프로젝트를 #Preview 에서 Crashed 가 발생할 때
-> 시뮬레이터는 이상이 없었는데, 크래쉬가 발생하면서 프리뷰가 안될 때, 클린 빌드를 해본다!
-
-> [!NOTE] Swift Combine 에 대해 파헤치다가
-> https://green1229.tistory.com/332
-
-> [!NOTE] @MainActor
-> MainActor 는 자동으로 UI관련 API 가 메인스레드에서 적절하게 디스패치 되도록 제공하는 속성이다. 즉, Swift Concurrency를 사용하고 MainActor가 표시된 컨텍스트 내에서 비동기 코드를 작성하면 실수로 백그라운드 큐에서 UI 업데이트를 해주는 오류에 대해 더 이상 걱정할 필요가 없다.
+> [!NOTE] iOS 앱 개발에서의 CI/CD 구축
+> - 자동화된 테스트 : 단위 테스트 및 UI 테스트를 자동화하며 앱의 안정성을 보장한다.
+> - 환경 설정 : 다양한 iOS 디바이스 및 운영 체제 버전에서 앱이 정상적으로 작동하는지 확인한다.
+> - 코드 품질 관리 : 코드 리뷰, 정적 코드 분석 도구 등을 통해 코드 품질을 관리한다.
+> - 보안 고려 사항 : 앱의 보안을 유지하며, 중요한 데이터나 암호 등은 안전하게 관리한다.
+> - 배포 전락 : 앱 스토어 배포, 베타 테스팅, 롤백 전략 등을 고려한다.
 

@@ -13,7 +13,6 @@ final class PurchaseRootView: UIView {
     private var titleViewConstraints: [NSLayoutConstraint]?
     private var purchaseItemStackViewConstraints: [NSLayoutConstraint]?
     private var purchaseButtonConstraints: [NSLayoutConstraint]?
-   
     
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
