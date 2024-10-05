@@ -4,10 +4,10 @@
 
 ### 🌟 기능 및 구현 내용
 </br>
-<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/구매하기.PNG" alt="" width="" height="">
-<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/좋아요.PNG" alt="" width="" height="">
-<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/상세정보.PNG" alt="" width="" height="">
-<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/구매하기.PNG" alt="" width="" height="">
+<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/구매하기.PNG" alt="" width="200" height="300">
+<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/좋아요.PNG" alt="" width="200" height="300">
+<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/상세정보.PNG" alt="" width="200" height="300">
+<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/구매하기.PNG" alt="" width="200" height="300">
 
 
 ### 🐚 주요 기능
