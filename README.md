@@ -4,10 +4,10 @@
 
 ### 🌟 기능 및 구현 내용
 </br>
-<img src="https://github.com/Seo-garden/FastCampus/tree/main/part6/메인탭.PNG" alt="" width="" height="">
-<img src="https://github.com/Seo-garden/FastCampus/tree/main/part6/좋아요.PNG" alt="" width="" height="">
-<img src="https://github.com/Seo-garden/FastCampus/tree/main/part6/상세정보.PNG" alt="" width="" height="">
-<img src="https://github.com/Seo-garden/FastCampus/tree/main/part6/구매하기.PNG" alt="" width="" height="">
+<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/구매하기.PNG" alt="" width="" height="">
+<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/좋아요.PNG" alt="" width="" height="">
+<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/상세정보.PNG" alt="" width="" height="">
+<img src="https://github.com/Seo-garden/FastCampus/blob/main/part6/구매하기.PNG" alt="" width="" height="">
 
 
 ### 🐚 주요 기능
@@ -52,3 +52,6 @@
   <summary>⭐️ Combine vs RxSwift </summary>
   사실 이 강의를 통해 얻고 싶었던 것은 취업공고 우대사항에 있는 RxSwift 혹은 Combine 에 대해 학습하고 싶었습니다. 왜 기업들은 이 기술스택을 우대사항에 두는 것에 대해 궁금증이 생겼고, 직접 만들어보면서 그 의도를 파악하고 싶었습니다. 프로젝트를 진행하면서 주로 비동기 작업을 보다 직관적이고 효율적으로 처리할 수 있도록 도와주는 것이었습니다. 
 </details>
+
+
+
